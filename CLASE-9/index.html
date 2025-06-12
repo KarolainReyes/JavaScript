@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- obtener elementos basado en el id -->
+    <p id="titulo-clase">Fundamentos del DOM</p>
+    <button onclick="cambiarTextoDeTitulo()">Cambiar texto de titulo</button>
+
+    <!-- obtener elementos por nombre de clase -->
+    <p class="camper">Sebastian</p>
+    <p class="camper">Daniel, pero dormido</p>
+    <button onclick="cambiarColorDeTexto()">Cambiar color de texto</button>
+
+    <!-- Obtener elementos por nombre de etiqueta -->
+    <h2>Hobbies</h2>
+    <ul>
+        <li>Leer</li>
+        <li>Caminar</li>
+        <li>Dormir en clase</li>
+    </ul>
+    <button onclick="colocarCaritaFeliz()">Colocar carita feliz</button>
+
+    <!-- OBtener elemento por selector -->
+    <p class="texto-final">Ya somos expertos en manipulación del DOM</p>
+    <p class="texto-final">Ya somos expertos en manipulación del DOM</p>
+    <button onclick="resaltarTexto()">Resaltar</button>
+    <button onclick="resaltarTodo()">Resaltar todos los parrafos</button>
+
+    <!-- Manipulación de atributos un atributo -->
+    <hr>
+    <img src="./perro.jpeg" alt="perro" width="50%">
+    <p id="alt-perro"></p>
+    <button onclick="mostrarAlt()">Mostrar atributo alt</button>
+    <button onclick="cambiarFoto()">Cambiar foto</button>
+    <button onclick="verAtributos()">Ver atributos</button>
+    <button onclick="quitarLimiteTamano()">Quitar limite de tamaño</button>
+
+    <input type="text" id="texto-entrada" disabled>
+    <button onclick="habilitaDeshabilita()">Habilitar/deshabilitar</button>
+    <script>
+        function quitarLimiteTamano() {
+            const fotoPerro = document.querySelector("img");
+            fotoPerro.removeAttribute("width");
+        }
+
+        function habilitaDeshabilita() {
+            const entradaDeTexto = document.getElementById("texto-entrada");
+            entradaDeTexto.toggleAttribute("disabled");
+        }
+
+        function verAtributos() {
+            const fotoPerro = document.querySelector("img");
+            const atributos = fotoPerro.getAttributeNames();
+            const parrafo = document.getElementById("alt-perro")
+            parrafo.textContent = atributos;
+
+        }
+
+        function cambiarFoto() {
+            const fotoPerro = document.querySelector("img");
+            if (fotoPerro.getAttribute("src") == "./perro.jpeg") {
+                fotoPerro.setAttribute("src", "./perro2.jpeg");
+            } else {
+                fotoPerro.setAttribute("src", "./perro.jpeg")
+            }
+        }
+
+        function mostrarAlt() {
+            const fotoPerro = document.querySelector("img");
+            const parrafo = document.getElementById("alt-perro")
+            parrafo.textContent = fotoPerro.getAttribute("alt");
+        }
+
+        function resaltarTodo() {
+            const textoFinal = document.querySelectorAll(".texto-final");
+            for (let i = 0; i < textoFinal.length; i++) {
+                textoFinal[i].style.backgroundColor = "yellow";
+            }
+        }
+
+        function resaltarTexto() {
+            const textoFinal = document.querySelector(".texto-final");
+            textoFinal.style.backgroundColor = "yellow";
+        }
+
+        function colocarCaritaFeliz() {
+            const hobbies = document.getElementsByTagName("li");
+            for (let i = 0; i < hobbies.length; i++) {
+                hobbies[i].textContent = hobbies[i].textContent + " :)";
+            }
+        }
+
+        function cambiarColorDeTexto() {
+            const campers = document.getElementsByClassName("camper");
+            for (let i = 0; i < campers.length; i++) {
+                console.log("Mensaje de aviso de cambio de color para el elemento " + campers[i].textContent);
+                campers[i].style.color = "red";
+            }
+        }
+
+        function cambiarTextoDeTitulo() {
+            const titulo = document.getElementById("titulo-clase");
+            titulo.textContent = "Fundamentos del DOM con el profe Juan";
+        }
+    </script>
+</body>
+
+</html>

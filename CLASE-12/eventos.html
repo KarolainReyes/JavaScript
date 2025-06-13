@@ -1,0 +1,55 @@
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="miBoton">Imprimir mensaje</button>
+    <script>
+        const miBoton = document.getElementById ("miBoton")
+        miBoton.addEventListener ('click', imprimir);
+
+        function imprimir () {
+            const nuevoElemento = document.createElement ('div');
+            nuevoElemento.textContent = "Hola";
+            nuevoElemento.style.backgroundColor = "pink";
+            nuevoElemento.style.color = "white"
+            nuevoElemento.style.fontSize = "32px"
+            document.body.append (nuevoElemento)
+        }
+    </script>
+</body>
+</html>
+
+<!--Uso de parametros efocado en eventos con .setAtrbute-->
+
+<!--Se asigna dinamicamente un atributo onclick al boton-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="miBoton">Imprimir mensaje</button>
+    <script>
+        const miBoton = document.getElementById ("miBoton")
+        miBoton.setAttribute ('onclick', "imprimir()");
+
+        function imprimir () {
+            const nuevoElemento = document.createElement ('div');
+            nuevoElemento.textContent = "Hola";
+            nuevoElemento.style.backgroundColor = "pink";
+            nuevoElemento.style.color = "white"
+            nuevoElemento.style.fontSize = "32px"
+            document.body.append (nuevoElemento)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenedor {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .personaje-tarjeta {
+            text-align: center;
+            border: 1px solid black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 1vh;
+            border-radius: 5%;
+            box-shadow: 3px 3px 5px gray;
+            background: linear-gradient(to right, rgb(131, 131, 249), rgb(254, 254, 160));
+
+        }
+
+        .personaje-nombre {
+            color: blue;
+        }
+
+        .personaje-rol {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <template>
+        <div class="personaje-tarjeta">
+            <h2 class="personaje-nombre"></h2>
+            <p class="personaje-rol"></p>
+        </div>
+    </template>
+
+    <div id="contenedor"></div>
+
+    <script>
+        const personajes = [
+            { name: "Walter White", rol: "Químico" },
+            { name: "Jesse Pinkman", rol: "Dealer" },
+            { name: "Skyler White", rol: "Ama de casa" },
+            { name: "Gustavo Fring", rol: "Traficante" },
+            { name: "Walter Junior", rol: "Discapacitado"}
+        ]
+
+        const plantilla = document.querySelector("template")
+        const contenedor = document.getElementById("contenedor")
+
+        personajes.forEach((personaje)=>{
+            const contenidoPlantilla = document.importNode(plantilla.content, true);
+
+            contenidoPlantilla.querySelector(".personaje-nombre").textContent = personaje.name;
+            contenidoPlantilla.querySelector(".personaje-rol").textContent = personaje.rol;
+
+            contenedor.appendChild(contenidoPlantilla);
+        })
+    </script>
+</body>
+
+</html>

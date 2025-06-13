@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Usuarios consultados con fetch</h1>
+    <div id="contenedor-usuarios"></div>
+
+    <script>
+        const url = "https://jsonplaceholder.typicode.com/users";
+        const opciones = { method: "GET" }
+        fetch(url, opciones).then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        }).then(data => {
+            data.forEach(user => {
+                const nombre = user.name;
+                const username = user.username;
+
+                const contenedor = document.getElementById("contenedor-usuarios");
+                contenedor.innerHTML += `
+                        <h1>${nombre}</h1>
+                        <h2>${username}</h2>
+                    `
+            })
+        })
+    </script>
+</body>
+
+</html>

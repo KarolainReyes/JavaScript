@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="contenedor">
+        <personaje-breaking-bad name="Walter White" rol="Químico"></personaje-breaking-bad>
+    </div>
+    <h2>Hola mundo</h2>
+    <template>
+        <style>
+            #contenedor {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .personaje-tarjeta {
+                text-align: center;
+                border: 1px solid black;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding: 1vh;
+                border-radius: 5%;
+                box-shadow: 3px 3px 5px gray;
+                background: linear-gradient(to right, rgb(131, 131, 249), rgb(254, 254, 160));
+
+            }
+
+            .personaje-nombre {
+                color: blue;
+            }
+
+            .personaje-rol {
+                color: blueviolet;
+            }
+        </style>
+        <div class="personaje-tarjeta">
+            <h2 class="personaje-nombre"></h2>
+            <p class="personaje-rol"></p>
+        </div>
+    </template>
+    <script>
+        class personajeBreakingBad extends HTMLElement {
+            constructor(){
+                super();
+
+                const shadow = this.attachShadow({mode: "open"});
+
+                const plantilla = document.querySelector("template");
+
+                const contenidoPlantilla = document.importNode(plantilla.content, true);
+
+                contenidoPlantilla.querySelector(".personaje-nombre").textContent = this.getAttribute("name");
+                contenidoPlantilla.querySelector(".personaje-rol").textContent = this.getAttribute("rol");
+
+                shadow.appendChild(contenidoPlantilla);
+            }
+        }
+
+        customElements.define("personaje-breaking-bad", personajeBreakingBad)
+    </script>
+</body>
+
+</html>

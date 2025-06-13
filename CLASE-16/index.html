@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Usuarios consultados con XMLHttpRequest</h1>
+    <div id="contenedor-usuarios"></div>
+
+    <script>
+        const peticion = new XMLHttpRequest();
+        const url = "https://jsonplaceholder.typicode.com/users";
+
+        peticion.open("GET", url);
+
+        peticion.onload = function(){
+            if(peticion.status === 200){
+                const users = JSON.parse(peticion.responseText);
+                users.forEach(user => {
+                    const nombre = user.name;
+                    const username = user.username;
+
+                    const contenedor = document.getElementById("contenedor-usuarios");
+                    contenedor.innerHTML += `
+                        <h1>${nombre}</h1>
+                        <h2>${username}</h2>
+                    `
+                })
+            }
+        }
+
+        peticion.send();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Usuarios consultados con fetch</h1>
+    <div id="contenedor-usuarios"></div>
+
+    <script>
+        async function cargarUsuarios() {
+            try {
+                const url = "https://jsonplaceholder.typicode.com/users";
+                const opciones = { method: "GET" };
+                const response = await fetch(url, opciones);
+                const data = await response.json();
+                data.forEach(user => {
+                    const nombre = user.name;
+                    const username = user.username;
+
+                    const contenedor = document.getElementById("contenedor-usuarios");
+                    contenedor.innerHTML += `
+                        <h1>${nombre}</h1>
+                        <h2>${username}</h2>
+                    `
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        cargarUsuarios()
+
+        
+    </script>
+</body>
+
+</html>
